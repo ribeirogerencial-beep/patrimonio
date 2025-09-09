@@ -38,5 +38,5 @@ jobs:
       - name: Run Build
         run: npm run build
         env: # Adicione aqui as variáveis de ambiente necessárias para o build
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: https://fabejfsnwkyuileblmwq.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYmVqZnNud2t5dWlsZWJsbXdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3ODcxMjQsImV4cCI6MjA3MjM2MzEyNH0.AjoiUkWOdoWzhX9sEB7Pbn_g5Eb0uBy4dOxjV7mYt0M
