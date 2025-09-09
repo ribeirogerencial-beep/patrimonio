@@ -1,0 +1,42 @@
+# .github/workflows/ci.yml
+
+name: CI - Build and Test
+
+# Define quando a Action deve rodar
+on:
+  push:
+    branches: [ "main" ] # Roda quando houver push na branch 'main'
+  pull_request:
+    branches: [ "main" ] # Roda também em pull requests para a 'main'
+
+jobs:
+  build:
+    # Define o sistema operacional
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Faz o checkout do seu código para a máquina da Action
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a versão do Node.js do seu projeto
+          cache: 'npm' # Ou 'yarn', 'pnpm'
+
+      # 3. Instala as dependências do projeto
+      - name: Install Dependencies
+        run: npm install # Ou yarn install, pnpm install
+
+      # 4. Roda o Lint para verificar a qualidade do código
+      - name: Run Lint
+        run: npm run lint
+
+      # 5. Roda o Build para garantir que o projeto compila sem erros
+      - name: Run Build
+        run: npm run build
+        env: # Adicione aqui as variáveis de ambiente necessárias para o build
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
